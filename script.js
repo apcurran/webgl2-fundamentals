@@ -23,8 +23,9 @@ void main() {
 `;
 
 /** @type {HTMLCanvasElement} */
-
 const canvas = document.querySelector(".canvas");
+
+/** @type {WebGL2RenderingContext} */
 const gl = canvas.getContext("webgl2");
 
 if (!gl) {
@@ -32,7 +33,7 @@ if (!gl) {
     error.textContent = "Please use a modern browser, as your current one does not support WebGL2.";
 }
 
-function createShader(gl, type, source) {
+function createShader(/** @type {WebGL2RenderingContext} */gl, type, source) {
     const shader = gl.createShader(type);
     gl.shaderSource(shader, source);
     gl.compileShader(shader);
@@ -47,7 +48,7 @@ function createShader(gl, type, source) {
     return undefined;
 }
 
-function createProgram(gl, vertexShader, fragmentShader) {
+function createProgram(/** @type {WebGL2RenderingContext} */gl, vertexShader, fragmentShader) {
     const program = gl.createProgram();
     
     gl.attachShader(program, vertexShader);
